@@ -289,7 +289,8 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
                 syncedFolder.getAccount(),
                 syncedFolder.getUploadAction(),
                 syncedFolder.isEnabled(),
-                new File(syncedFolder.getLocalPath()).getName());
+                new File(syncedFolder.getLocalPath()).getName(),
+                syncedFolder.getType());
     }
 
     /**
