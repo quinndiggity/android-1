@@ -403,6 +403,7 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
                 result = super.onOptionsItemSelected(item);
                 break;
         }
+
         return result;
     }
 
