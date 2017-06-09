@@ -229,10 +229,14 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
         List<SyncedFolderDisplayItem> result = new ArrayList<>();
 
         for (MediaFolder mediaFolder : mediaFolders) {
-            if (syncedFoldersMap.containsKey(mediaFolder.absolutePath)) {
-                SyncedFolder syncedFolder = syncedFoldersMap.get(mediaFolder.absolutePath);
+            if (syncedFoldersMap.containsKey(mediaFolder.absolutePath+"-"+mediaFolder.type)) {
+                SyncedFolder syncedFolder = syncedFoldersMap.get(mediaFolder.absolutePath+"-"+mediaFolder.type);
                 syncedFoldersMap.remove(mediaFolder.absolutePath);
-                result.add(createSyncedFolder(syncedFolder, mediaFolder));
+                if (MediaFolder.CUSTOM == syncedFolder.getType()) {
+                    result.add(createSyncedFolderWithoutMediaFolder(syncedFolder));
+                } else {
+                    result.add(createSyncedFolder(syncedFolder, mediaFolder));
+                }
             } else {
                 result.add(createSyncedFolderFromMediaFolder(mediaFolder));
             }
@@ -240,8 +244,7 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
 
         // No media folder and thus always a custom folder
         for (SyncedFolder syncedFolder : syncedFoldersMap.values()) {
-            SyncedFolderDisplayItem syncedFolderDisplayItem = createSyncedFolderWithoutMediaFolder(syncedFolder);
-            result.add(syncedFolderDisplayItem);
+            result.add(createSyncedFolderWithoutMediaFolder(syncedFolder));
         }
 
         return result;
@@ -400,7 +403,7 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
         Map<String, SyncedFolder> result = new HashMap<>();
         if (syncFolders != null) {
             for (SyncedFolder syncFolder : syncFolders) {
-                result.put(syncFolder.getLocalPath(), syncFolder);
+                result.put(syncFolder.getLocalPath()+"-"+syncFolder.getType(), syncFolder);
             }
         }
         return result;
