@@ -26,6 +26,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -307,7 +309,6 @@ public class UploadFilesActivity extends FileActivity implements
         }
         return true;
     }
-
     
     @Override
     public void onBackPressed() {
@@ -329,7 +330,6 @@ public class UploadFilesActivity extends FileActivity implements
             setSelectAllMenuItem(mOptionsMenu.findItem(R.id.action_select_all), false);
         }
     }
-
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -380,15 +380,16 @@ public class UploadFilesActivity extends FileActivity implements
         }
     }
 
-
-    // Custom array adapter to override text colors
+    /**
+     * Custom array adapter to override text colors
+     */
     private class CustomArrayAdapter<T> extends ArrayAdapter<T> {
     
         public CustomArrayAdapter(UploadFilesActivity ctx, int view) {
             super(ctx, view);
         }
-    
-        public View getView(int position, View convertView, ViewGroup parent) {
+
+        public @NonNull View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View v = super.getView(position, convertView, parent);
     
             ((TextView) v).setTextColor(getResources().getColorStateList(
@@ -396,8 +397,7 @@ public class UploadFilesActivity extends FileActivity implements
             return v;
         }
     
-        public View getDropDownView(int position, View convertView,
-                ViewGroup parent) {
+        public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
             View v = super.getDropDownView(position, convertView, parent);
     
             ((TextView) v).setTextColor(getResources().getColorStateList(
@@ -405,7 +405,6 @@ public class UploadFilesActivity extends FileActivity implements
     
             return v;
         }
-    
     }
 
     /**
@@ -484,7 +483,7 @@ public class UploadFilesActivity extends FileActivity implements
     private class CheckAvailableSpaceTask extends AsyncTask<Boolean, Void, Boolean> {
 
         /**
-         * Updates the UI before trying the movement
+         * Updates the UI before trying the movement.
          */
         @Override
         protected void onPreExecute () {
