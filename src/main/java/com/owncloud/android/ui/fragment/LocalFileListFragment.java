@@ -25,6 +25,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -132,6 +134,19 @@ public class LocalFileListFragment extends ExtendedListFragment {
         setListAdapter(mAdapter);
         
         Log_OC.i(TAG, "onActivityCreated() stop");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (mContainerActivity.isFolderPickerMode()) {
+            menu.removeItem(R.id.action_select_all);
+            menu.removeItem(R.id.action_search);
+        } else {
+            super.onCreateOptionsMenu(menu, inflater);
+        }
     }
     
     /**
