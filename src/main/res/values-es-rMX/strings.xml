@@ -386,7 +386,7 @@ en los últimos 7 días. </string>
 
     <string name="error_cant_bind_to_operations_service">Error crítico: No se pueden realizar operaciones</string>
 
-    <string name="network_error_socket_exception">Se presentó un error durante la conexión alel servidor.</string>
+    <string name="network_error_socket_exception">Se presentó un error durante la conexión al servidor.</string>
     <string name="network_error_socket_timeout_exception">Se presentó un error al esperar respuesta del servidor. La operación no pudo ser completada.</string>
     <string name="network_error_connect_timeout_exception">Se presentó un error al esperar respuesta del servidor La operación no pudo ser completada.</string>
     <string name="network_host_not_available">La operación no pudo ser completada. El servidor no está disponible</string>
@@ -634,13 +634,7 @@ en los últimos 7 días. </string>
     <string name="webview_error">Se presentó un error</string>
     <string name="prefs_category_about">Acerca de</string>
 
-    <string name="actionbar_contacts">Respaldar contactos</string>
     <string name="actionbar_contacts_restore">Restaurar contactos</string>
-    <string name="contacts_backup_button">Respaldar ahora</string>
-    <string name="contacts_restore_button">Restaurar el último respaldo</string>
-    <string name="contacts_header_restore">Restaurar</string>
-    <string name="contacts_header_backup">Respaldar</string>
-    <string name="contacts_automatic_backup">Respaldo de contactos</string>
     <string name="contacts_last_backup">Último respaldo</string>
     <string name="contacts_read_permission">Se requiere el permiso para leer la lista de contactos</string>
     <string name="contacts_write_permission">Se requiere el permiso para cambiar la lista de contactos</string>
