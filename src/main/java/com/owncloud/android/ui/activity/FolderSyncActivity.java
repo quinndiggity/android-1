@@ -468,7 +468,9 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
             long storedId = mSyncedFolderProvider.storeFolderSync(syncedFolderDisplayItem);
             if (storedId != -1) {
                 syncedFolderDisplayItem.setId(storedId);
-                EventBus.getDefault().post(new InitiateSyncedFolder(syncedFolderDisplayItem));
+                if (syncedFolderDisplayItem.isEnabled()) {
+                    EventBus.getDefault().post(new InitiateSyncedFolder(syncedFolderDisplayItem));
+                }
             }
         }
     }
@@ -513,7 +515,9 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
             long storedId = mSyncedFolderProvider.storeFolderSync(newCustomFolder);
             if (storedId != -1) {
                 newCustomFolder.setId(storedId);
-                EventBus.getDefault().post(new InitiateSyncedFolder(newCustomFolder));
+                if (newCustomFolder.isEnabled()) {
+                    EventBus.getDefault().post(new InitiateSyncedFolder(newCustomFolder));
+                }
             }
             mAdapter.addSyncFolderItem(newCustomFolder);
         } else {
@@ -528,7 +532,9 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
                 long storedId = mSyncedFolderProvider.storeFolderSync(item);
                 if (storedId != -1) {
                     item.setId(storedId);
-                    EventBus.getDefault().post(new InitiateSyncedFolder(item));
+                    if (item.isEnabled()) {
+                        EventBus.getDefault().post(new InitiateSyncedFolder(item));
+                    }
                 }
             } else {
                 // existing synced folder setup to be updated
@@ -552,7 +558,6 @@ public class FolderSyncActivity extends FileActivity implements FolderSyncAdapte
     public void onDeleteSyncedFolderPreference(SyncedFolderParcelable syncedFolder) {
         mSyncedFolderProvider.deleteSyncedFolder(syncedFolder.getId());
         mAdapter.removeItem(syncedFolder.getSection());
-        mAdapter.notifyDataSetChanged();
     }
 
     /**
